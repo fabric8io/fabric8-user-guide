@@ -1,0 +1,15 @@
+[[glossary]]
+
+= Glossary
+
+Lets provide a defintion of all the terms we use in the fabric8 documentation.
+
+### Environment
+
+An environment maps to a **namespace** in a kubernetes cluster. With federation an environment may actually be a namespace in multiple clusters in multiple data centres to provide high availability. You may choose to use a separate kubernetes cluster for production to development and testing clusters.
+
+Developers often refer to the multiple environments they work in with common names like `Production`, `Staging`, `UAT`, `Testing` and so forth. Each environment is a separate place where you can deploy and run software.
+
+Ideally there should be a [Continuous Delivery](http://en.wikipedia.org/wiki/Continuous_delivery) pipeline setup to move container images and manifests from `dev -> test -> UAT -> staging -> production`. In an ideal world we'd reuse as much as possible (container images and kubernetes manifests) between environments without modification so we can be sure that if things work in Testing and Staging then they will work in Production.
+
+In Kubernetes each environment is a **namespace**. Then [pods](pods.html) inside a namespace only see [services](services.html) defined in that namespace. So _prod_ pods only see _prod_ services, _test_ pods only see _test_ services etc.
